@@ -10,6 +10,8 @@ Installation
 
 rails plugin install git@github.com:minhnghivn/my_replication.git
 
+
+
 Configuration
 =============
 
@@ -31,6 +33,8 @@ development:
       username: minhnghivn
       password: secret
       host: localhost
+
+
 
 Example
 =============
