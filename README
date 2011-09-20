@@ -6,8 +6,40 @@ MyReplication is an extention of the existing rails' mysql database adapter that
 
 
 Installation
-=======
+=============
 
+rails plugin install git@github.com:minhnghivn/my_replication.git
+
+Configuration
+=============
+
+You need to specify a master database along with replicated ones in database.yml. For example:
+
+development:
+  adapter: mysql
+  database: masterdb
+  pool: 5
+  username: minhnghivn
+  password: secret
+  host: localhost
+  replicas:
+    - database: replica001
+      username: minhnghivn
+      password: secret
+      host: localhost
+    - database: replica002
+      username: minhnghivn
+      password: secret
+      host: localhost
+
+Example
+=============
+
+Use replication block to switch database connection to one of the replicated databases (do not connect to the master one) and then execute the statement inside the block
+
+User.replication do   
+  list = User.all
+end
 
 
 
