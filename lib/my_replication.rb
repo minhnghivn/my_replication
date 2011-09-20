@@ -16,24 +16,34 @@ module ActiveRecord
           old_find(*args)
         end
       end
+
+      def replication
+        connection.replicate {
+          yield
+        }
+      end
     end
   end
 
   module ConnectionAdapters
     class MysqlAdapter
-      def replicate
+      def replicate(replica = nil)
         old = @connection
-        @connection = select_replica
+        @connection = select_replica(replica)
         yield
       ensure
         @connection = old
       end
 
-      def select_replica
-        return @replicas[rand(@replicas.size)]
+      def select_replica replica
+        if replica
+          
+        else
+          return @replicas[rand(@replicas.size)]
+        end
+        
       end
 
-      # Nghi: create replica connection
       def init_replicas
         if @config[:replicas]
           @replicas = (@config[:replicas]).map{Mysql.init}
