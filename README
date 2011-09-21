@@ -7,7 +7,7 @@ MyReplication is an extention of the existing rails' mysql database adapter that
 == Configuration
 You need to specify a master database along with replicated ones in database.yml. For example:
 
-    development:
+      development:
         adapter: mysql
         database: masterdb
         pool: 5
