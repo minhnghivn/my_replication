@@ -7,24 +7,24 @@ MyReplication is an extention of the existing rails' mysql database adapter that
 == Configuration
 You need to specify a master database along with replicated ones in database.yml. For example:
 
-development:
-    adapter: mysql
-    database: masterdb
-    pool: 5
-    username: minhnghivn
-    password: secret
-    host: localhost
-    replicas:
-      - name: replica1
-        database: db1
+    development:
+        adapter: mysql
+        database: masterdb
+        pool: 5
         username: minhnghivn
         password: secret
         host: localhost
-      - name: replication2
-        database: db2
-        username: minhnghivn
-        password: secret
-        host: localhost
+        replicas:
+          - name: replica1
+            database: db1
+            username: minhnghivn
+            password: secret
+            host: localhost
+          - name: replication2
+            database: db2
+            username: minhnghivn
+            password: secret
+            host: localhost
 ==Examples
 Use replication block to switch database connection (randomly) to one of the replicated databases (do not connect to the master one) and then execute the statement inside the block
 
