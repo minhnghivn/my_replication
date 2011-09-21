@@ -25,8 +25,9 @@ You need to specify a master database along with replicated ones in database.yml
             username: minhnghivn
             password: secret
             host: localhost
-==Examples
-Use replication block to switch database connection (randomly) to one of the replicated databases (do not connect to the master one) and then execute the statement inside the block
+
+== Examples
+Use replication block to switch database connection (randomly) to one of the replicated databases (do not connect to the master one) then execute the statement inside the block
 
     User.replication do   
       list = User.all
@@ -35,7 +36,18 @@ Use replication block to switch database connection (randomly) to one of the rep
 You can also explicitly specify the database connection with "using" block
 
     User.using(:replica1) do
-      u = User.all
+      list = User.all
     end
+    
+== Contact
+The author of this plugin can be reached at:
+* Email: minhnghivn@yahoo.com
+* Y!M: minhnghivn
+* Skype: minhnghivn
+
+Please let me know if you have any idea or suggestion
+
+Regards,
+Nghi Pham
 
 Copyright (c) 2011 Nghi Pham, released under the MIT license
