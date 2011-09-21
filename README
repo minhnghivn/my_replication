@@ -25,11 +25,13 @@ development:
   password: secret
   host: localhost
   replicas:
-    - database: replica001
+    - name: replica1
+      database: db1
       username: minhnghivn
       password: secret
       host: localhost
-    - database: replica002
+    - name: replication2
+      database: db2
       username: minhnghivn
       password: secret
       host: localhost
@@ -39,12 +41,17 @@ development:
 Example
 =============
 
-Use replication block to switch database connection to one of the replicated databases (do not connect to the master one) and then execute the statement inside the block
+Use replication block to switch database connection (randomly) to one of the replicated databases (do not connect to the master one) and then execute the statement inside the block
 
 User.replication do   
   list = User.all
 end
 
+You can also explicitly specify the database connection with "using" block
+
+User.using(:replica1) do
+  u = User.all
+end
 
 
 Copyright (c) 2011 Nghi Pham, released under the MIT license

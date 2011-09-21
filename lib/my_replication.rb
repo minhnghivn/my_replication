@@ -1,3 +1,6 @@
+module MyReplication
+  attr_accessor :replication_name
+end
 module ActiveRecord
   class Base
     class << self
@@ -18,10 +21,17 @@ module ActiveRecord
       end
 
       def replication
-        connection.replicate {
+        connection.replicate do
           yield
-        }
+        end
       end
+      
+      def using(replica)
+        connection.replicate(replica) do
+          yield
+        end
+      end
+
     end
   end
 
@@ -35,9 +45,12 @@ module ActiveRecord
         @connection = old
       end
 
-      def select_replica replica
+      def select_replica(replica = nil)
         if replica
-          
+          for conn in @replicas
+            return conn if conn.replication_name == replica.to_s
+          end
+          raise 'Cannot find replication with name "#{replica}"'
         else
           return @replicas[rand(@replicas.size)]
         end
@@ -67,6 +80,11 @@ module ActiveRecord
           password = configs[:password].to_s
           database = configs[:database]
           replica.real_connect(host, username, password, database, port, socket)
+
+          # Add the replication_name attribute (for later lookup)
+          replica.extend MyReplication
+          replica.replication_name = configs[:name]
+          
           
           old = @connection
           @connection = replica
