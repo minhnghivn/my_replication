@@ -20,7 +20,7 @@ You need to specify a master database along with replicated ones in database.yml
             username: minhnghivn
             password: secret
             host: localhost
-          - name: replication2
+          - name: replica2
             database: db2
             username: minhnghivn
             password: secret
