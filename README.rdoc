@@ -40,10 +40,7 @@ You can also explicitly specify the database connection with "using" block
     end
     
 == Contact
-The author of this plugin can be reached at:
-* Email: minhnghivn@yahoo.com
-* Y!M: minhnghivn
-* Skype: minhnghivn
+
 
 == Copyright
 Copyright (c) 2011 Nghi Pham, released under the MIT license
