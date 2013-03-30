@@ -1,2 +1,2 @@
-# Include hook code here
+# Include hook code here here
 require 'my_replication'
