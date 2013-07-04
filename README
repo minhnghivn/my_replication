@@ -1,4 +1,4 @@
-== Introduction! 
+== Introduction!  
 MyReplication is an extention of the existing rails' mysql database adapter that is designed to help applications switch connection to another database server in a replication database system.
 
 == Installation BBB
